@@ -13,3 +13,21 @@ cwd = "frontend"
 command = "yarn"
 args = ["dev"]
 dependencies = ["node-deps"]
+
+[tasks.docker-rm-latest]
+private = true
+command = "docker"
+args = ["image", "rm", "-f", "${CARGO_MAKE_CRATE_NAME}:latest"]
+
+[tasks.docker-rm-current]
+private = true
+command = "docker"
+args = ["image", "rm", "-f", "${CARGO_MAKE_CRATE_NAME}:${CARGO_MAKE_CRATE_VERSION}"]
+
+[tasks.docker-build]
+private = true
+command = "docker"
+args = ["build", "-t", "${CARGO_MAKE_CRATE_NAME}:${CARGO_MAKE_CRATE_VERSION}", "-t", "${CARGO_MAKE_CRATE_NAME}:latest", "."]
+
+[tasks.docker]
+dependencies = ["docker-rm-latest", "docker-rm-current", "docker-build"]
