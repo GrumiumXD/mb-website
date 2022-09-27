@@ -1,0 +1,15 @@
+[tasks.node-deps]
+cwd = "frontend"
+command = "yarn"
+
+[tasks.frontend]
+cwd = "frontend"
+command = "yarn"
+args = ["build"]
+dependencies = ["node-deps"]
+
+[tasks.dev-server]
+cwd = "frontend"
+command = "yarn"
+args = ["dev"]
+dependencies = ["node-deps"]
