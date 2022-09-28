@@ -2,7 +2,8 @@ import { Outlet } from 'react-router-dom';
 
 import styled from 'styled-components';
 import ErrorPage from '../ErrorPage';
-import Menu from './Menu';
+import Header from './Header';
+import Menu from './menu/Menu';
 
 const Container = styled.div`
   display: flex;
@@ -18,7 +19,8 @@ const Layout = (props: Props) => {
     <Container>
       <Menu />
 
-      <div>
+      <div style={{ width: '100%' }}>
+        <Header />
         {props?.error && <ErrorPage />}
         {!props?.error && <Outlet />}
       </div>

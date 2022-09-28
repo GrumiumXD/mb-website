@@ -1,0 +1,16 @@
+@font-face {
+	font-family: 'Ballantines Bold';
+	src: local('Ballantines Bold'), local('BallantinesBold'),
+		url('./Ballantines-Bold.woff2') format('woff2'),
+		url('./Ballantines-Bold.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto'), url('./Roboto.woff2') format('woff2'),
+		url('./Roboto.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+}
