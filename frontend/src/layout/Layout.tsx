@@ -9,6 +9,7 @@ import ErrorPage from '../pages/ErrorPage';
 import Header from './Header';
 import Menu from './menu/Menu';
 import DialogMenu from './menu/DialogMenu';
+import Footer from './Footer';
 
 const Grid = styled.div`
   display: grid;
@@ -48,6 +49,7 @@ const Layout = (props: Props) => {
           {!props?.error && <Outlet />}
         </Container>
       </Main>
+      <Footer />
       <Tablet>
         <Menu />
       </Tablet>

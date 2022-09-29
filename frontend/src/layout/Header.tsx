@@ -12,6 +12,10 @@ const HeaderBar = styled.header`
   align-items: center;
   justify-content: center;
   grid-area: header;
+
+  @media (min-width: ${TabletThreshold}px) {
+    padding-top: var(--spacing-m);
+  }
 `;
 
 const LogoBox = styled.div`
