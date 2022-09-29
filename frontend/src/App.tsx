@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import About from './routes/About';
+import About from './pages/About';
 
-import Galerie from './routes/Galerie';
-import Layout from './routes/layout/Layout';
+import Galerie from './pages/Galerie';
+import Layout from './layout/Layout';
 
 const router = createBrowserRouter([
   {

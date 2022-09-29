@@ -1,20 +1,17 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { css } from 'styled-components';
 
-const StyledNavLink = styled(NavLink).attrs(() => ({
-  tabindex: '0',
-}))`
+const BaseButtonStyle = css`
   font-family: 'Roboto';
   text-align: center;
   border: none;
-  border-radius: 0.125em;
+  border-radius: 0.25em;
   padding: 0.5em 0.5em;
   margin: 0.5em;
   font-size: 1em;
-  text-transform: uppercase;
-  text-decoration: none;
+  /* text-transform: uppercase; */
+  /* text-decoration: none; */
   cursor: pointer;
-  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.5);
+  box-shadow: var(--box-shadow-l);
   outline: none;
   white-space: nowrap;
 
@@ -44,4 +41,4 @@ const StyledNavLink = styled(NavLink).attrs(() => ({
   }
 `;
 
-export default StyledNavLink;
+export default BaseButtonStyle;

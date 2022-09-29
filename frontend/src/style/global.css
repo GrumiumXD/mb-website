@@ -1,3 +1,21 @@
 body {
   background-image: url('./noten.png');
 }
+
+:root {
+  --main-color-value: 255, 183, 76;
+  --main-color: rgb(var(--main-color-value));
+  --main-color-trans: rgba(var(--main-color-value), 0.9);
+
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-s: 0.75rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.25rem;
+  --spacing-xl: 1.5rem;
+  --spacing-xxl: 1.75rem;
+  --spacing-xxl-2: 2rem;
+
+  --box-shadow-l: 0 0 0.25em rgba(0, 0, 0, 0.5);
+  --box-shadow-m: 0 0 0.5em rgba(0, 0, 0, 0.5);
+}
