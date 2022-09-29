@@ -10,6 +10,8 @@ import Header from './Header';
 import Menu from './menu/Menu';
 import DialogMenu from './menu/DialogMenu';
 import Footer from './Footer';
+import { LoaderMedium } from '../components/Loader';
+import { Suspense } from 'react';
 
 const Grid = styled.div`
   display: grid;
@@ -44,10 +46,12 @@ const Layout = (props: Props) => {
     <Grid>
       <Header />
       <Main>
-        <Container>
-          {props?.error && <ErrorPage />}
-          {!props?.error && <Outlet />}
-        </Container>
+        <Suspense fallback={<LoaderMedium />}>
+          <Container>
+            {props?.error && <ErrorPage />}
+            {!props?.error && <Outlet />}
+          </Container>
+        </Suspense>
       </Main>
       <Footer />
       <Tablet>

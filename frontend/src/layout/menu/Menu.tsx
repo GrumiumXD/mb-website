@@ -1,7 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import StyledNavLink from './StyledNavLink';
-import { Tablet, TabletThreshold } from '../responsive';
+import { Tablet } from '../responsive';
 
 import banner from './banner.png';
 
@@ -30,17 +31,19 @@ const Banner = styled.img`
 type Props = {};
 
 const Menu = (props: Props) => {
+  const { t } = useTranslation('menu');
+
   return (
     <StyledNav>
-      <MenuHeader>Menu</MenuHeader>
+      <MenuHeader>{t('header')}</MenuHeader>
       <StyledNavLink to={'/'} end>
-        Über uns
+        {t('about')}
       </StyledNavLink>
-      <StyledNavLink to={'images'}>Galerie</StyledNavLink>
-      <StyledNavLink to={'songs'}>Live-Mitschnitte</StyledNavLink>
-      <StyledNavLink to={'interested'}>Mitspielen?</StyledNavLink>
-      <StyledNavLink to={'press'}>Presse</StyledNavLink>
-      <StyledNavLink to={'contact'}>Kontakt</StyledNavLink>
+      <StyledNavLink to={'images'}>{t('images')}</StyledNavLink>
+      <StyledNavLink to={'songs'}>{t('songs')}</StyledNavLink>
+      <StyledNavLink to={'interested'}>{t('interested')}</StyledNavLink>
+      <StyledNavLink to={'press'}>{t('press')}</StyledNavLink>
+      <StyledNavLink to={'contact'}>{t('contact')}</StyledNavLink>
       <Tablet>
         <Banner src={banner} alt="banner" />
       </Tablet>

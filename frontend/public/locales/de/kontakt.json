@@ -1,0 +1,16 @@
+{
+	"header": "Kontakt",
+	"p1": "Haben Sie eine Frage oder willst Du bei uns mitspielen? Am besten sind wir über das Kontaktformular zu erreichen.",
+	"sender": "Name/Organisation",
+	"email": "E-Mail-Adresse",
+	"subject": "Betreff",
+	"message": "Nachricht",
+	"submit": "Absenden",
+	"success": "Ihre Nachricht wurde erfolgreich übermittelt. Wir werden uns so schnell wie möglich bei Ihnen melden.",
+	"fast": "Sie haben das Formular in zu kurzer Zeit ausgefüllt. Wir vermuten daher, dass Sie ein Bot sind!",
+	"botCatch": "Botfalle! (Dieses Feld nicht ausfüllen)",
+	"bot": "Wir vermuten, dass Sie ein Bot sind!",
+	"error": "Ein Fehler ist aufgetreten:",
+	"phone": "Telefonisch sind wir erreichbar unter:",
+	"facebook": "Wir haben auch eine Facebook-Seite."
+}

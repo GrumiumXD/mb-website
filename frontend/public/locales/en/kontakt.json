@@ -1,0 +1,16 @@
+{
+	"header": "Contact us",
+	"p1": "You have questions or would like to join our band? Use the contact form to get in touch!",
+	"sender": "name/organization",
+	"email": "e-mail address",
+	"subject": "subject",
+	"message": "message",
+	"submit": "Submit",
+	"success": "Your message was sent successfully. We will try to answer it as soon as possible.",
+	"fast": "You filled out the form to fast. We suspect you to be a bot!",
+	"botCatch": "Bot trap! (do not fill this input)",
+	"bot": "We suspect you to be a bot!",
+	"error": "An error occured:",
+	"phone": "We can be reached by phone under:",
+	"facebook": "You may also take a look at our Facebook page."
+}
