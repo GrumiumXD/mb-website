@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { TabletThreshold, Tablet, Mobile } from './responsive';
 
-import Container from '../components/Container';
 import ErrorPage from '../pages/ErrorPage';
 import Header from './Header';
 import Menu from './menu/Menu';
@@ -47,10 +46,8 @@ const Layout = (props: Props) => {
       <Header />
       <Main>
         <Suspense fallback={<LoaderMedium />}>
-          <Container>
-            {props?.error && <ErrorPage />}
-            {!props?.error && <Outlet />}
-          </Container>
+          {props?.error && <ErrorPage />}
+          {!props?.error && <Outlet />}
         </Suspense>
       </Main>
       <Footer />

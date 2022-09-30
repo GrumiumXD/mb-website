@@ -16,7 +16,8 @@ const StyledNav = styled.nav`
   grid-area: menu;
 `;
 
-const MenuHeader = styled.h1`
+const MenuHeader = styled.h2`
+  margin-block: 0.5em;
   text-align: center;
   font-family: 'Ballantines Bold';
   font-weight: normal;
@@ -35,7 +36,7 @@ const Menu = (props: Props) => {
 
   return (
     <StyledNav>
-      <MenuHeader>{t('header')}</MenuHeader>
+      <MenuHeader>{t('heading')}</MenuHeader>
       <StyledNavLink to={'/'} end>
         {t('about')}
       </StyledNavLink>

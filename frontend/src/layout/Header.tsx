@@ -69,7 +69,7 @@ const LogoBox = styled.div`
   }
 `;
 
-const Logo = styled.h5`
+const Logo = styled.h1`
   font-family: 'Ballantines Bold';
   font-weight: normal;
   color: #d0011b;
