@@ -26,14 +26,17 @@ const Grid = styled.div`
   @media (min-width: ${TabletThreshold}px) {
     grid-template-columns: auto 1fr;
     grid-template-areas:
-      'menu header'
-      'menu main'
-      'menu footer';
+      'menu header .'
+      'menu main .'
+      'menu footer .';
   }
 `;
 
 const Main = styled.main`
   grid-area: main;
+  width: 100%;
+  max-width: 1000px;
+  justify-self: center;
 `;
 
 type Props = {
