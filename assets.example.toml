@@ -1,0 +1,7 @@
+[[albums]]
+title = "title of the first album"
+path = "path/to/the/first/album"
+
+[[albums]]
+title = "title of the second album"
+path = "path/to/the/seond/album"

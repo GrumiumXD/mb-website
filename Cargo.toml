@@ -11,3 +11,5 @@ actix-web-lab = "0.18.2"
 argh = "0.1.9"
 env_logger = "0.9.1"
 log = "0.4.17"
+serde = { version = "1.0.145", features = ["derive"]}
+toml = "0.5.9"

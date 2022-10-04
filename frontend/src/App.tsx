@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import About from './pages/about/About';
 
 import Galerie from './pages/Galerie';
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
+const App = () => {
   return <RouterProvider router={router} />;
-}
+};
 
 export default App;
