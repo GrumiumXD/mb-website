@@ -1,29 +1,35 @@
+use rand::{seq::SliceRandom, thread_rng};
 use serde::Deserialize;
+use simple_error::{SimpleError, SimpleResult};
 use std::fs::{read_dir, File};
 use std::io::{self, BufReader, Read};
 use std::path::{Path, PathBuf};
 
-#[derive(Deserialize, Debug)]
+// some helper structs for parsing the config file
+#[derive(Deserialize)]
 struct AlbumConfig {
     title: String,
     path: String,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize)]
 struct AssetConfig {
+    asset_path: String,
+    slideshow_count: usize,
     albums: Vec<AlbumConfig>,
 }
 
-#[derive(Debug)]
+// the structs for holding the asset data
 pub struct Album {
     title: String,
     images: Vec<PathBuf>,
 }
 
-#[derive(Debug)]
 pub struct AssetInfo {
+    asset_path: String,
+    slideshow_count: usize,
     albums: Vec<Album>,
-    random_images: Vec<PathBuf>,
+    random_images: Vec<(usize, PathBuf)>,
 }
 
 impl AssetInfo {
@@ -53,7 +59,7 @@ impl AssetInfo {
         let mut albums = Vec::<_>::new();
         let mut random_images = Vec::<_>::new();
 
-        for al in config.albums.iter() {
+        for (index, al) in config.albums.iter().enumerate() {
             let directory = read_dir(&al.path)?;
 
             let images = directory
@@ -61,8 +67,8 @@ impl AssetInfo {
                     let fi = fi?;
 
                     // check for file names starting with "_" for the random images
-                    if fi.file_name().to_str().unwrap_or_default().starts_with("_") {
-                        random_images.push(fi.path());
+                    if fi.file_name().to_str().unwrap_or_default().starts_with('_') {
+                        random_images.push((index, fi.path()));
                     }
 
                     Ok(fi.path())
@@ -76,16 +82,42 @@ impl AssetInfo {
         }
 
         Ok(AssetInfo {
+            asset_path: config.asset_path,
+            slideshow_count: config.slideshow_count,
             albums,
-            random_images: Vec::new(),
+            random_images,
         })
     }
 
-    pub fn get_albums(&self) -> &Vec<Album> {
-        &self.albums
+    pub fn get_asset_path(&self) -> &str {
+        &self.asset_path
     }
 
-    pub fn get_random_images(&self) -> &Vec<PathBuf> {
-        &self.random_images
+    pub fn get_album_list(&self) -> Vec<String> {
+        let albums = self
+            .albums
+            .iter()
+            .map(|a| a.title.clone())
+            .collect::<Vec<_>>();
+
+        albums
+    }
+
+    pub fn get_album(&self, index: usize) -> SimpleResult<Vec<PathBuf>> {
+        let images = self
+            .albums
+            .get(index)
+            .ok_or_else(|| SimpleError::new("album index out of bounds"))?
+            .images
+            .to_vec();
+
+        Ok(images)
+    }
+
+    pub fn get_random_images(&self) -> Vec<(usize, PathBuf)> {
+        self.random_images
+            .choose_multiple(&mut thread_rng(), self.slideshow_count)
+            .cloned()
+            .collect()
     }
 }

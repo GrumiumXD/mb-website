@@ -1,6 +1,6 @@
-use std::fs;
 use std::path::PathBuf;
 
+use actix_files::Files;
 use actix_web::{middleware::Logger, web, App, HttpServer};
 use actix_web_lab::web::spa;
 use env_logger::Env;
@@ -9,6 +9,7 @@ use argh::FromArgs;
 
 mod assets;
 use assets::AssetInfo;
+use log::info;
 mod handler;
 
 #[derive(FromArgs, Debug)]
@@ -37,19 +38,21 @@ async fn main() -> std::io::Result<()> {
     index_path.push(&options.frontend);
     index_path.push("index.html");
 
-    let mut asset_path: PathBuf = PathBuf::new();
-    asset_path.push(&options.assets);
+    let mut asset_config_path: PathBuf = PathBuf::new();
+    asset_config_path.push(&options.assets);
 
-    let asset_info = AssetInfo::new(asset_path).unwrap();
+    let asset_info = AssetInfo::new(asset_config_path).unwrap();
+    info!("Asset config loaded");
     let app_data = web::Data::new(asset_info);
 
-    println!("Running server on port {}", options.port);
+    info!("Running server on port {}", options.port);
 
     HttpServer::new(move || {
         App::new()
             .app_data(app_data.clone())
             .wrap(Logger::default())
             .service(web::scope("/api").configure(handler::handler_config))
+            .service(Files::new("/assets", app_data.get_asset_path()))
             .service(
                 spa()
                     .index_file(format!("{}", index_path.display()))
