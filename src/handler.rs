@@ -1,9 +1,9 @@
 use actix_web::{error, get, web, Responder};
 
-use crate::assets::AssetInfo;
+use crate::media::MediaInfo;
 
 #[get("/gallery")]
-pub async fn galleries(data: web::Data<AssetInfo>) -> actix_web::Result<impl Responder> {
+pub async fn galleries(data: web::Data<MediaInfo>) -> actix_web::Result<impl Responder> {
     let albums = data.get_album_list();
 
     Ok(web::Json(albums))
@@ -12,7 +12,7 @@ pub async fn galleries(data: web::Data<AssetInfo>) -> actix_web::Result<impl Res
 #[get("/gallery/{index}")]
 pub async fn gallery(
     path: web::Path<usize>,
-    data: web::Data<AssetInfo>,
+    data: web::Data<MediaInfo>,
 ) -> actix_web::Result<impl Responder> {
     let index = path.into_inner();
 
@@ -22,7 +22,7 @@ pub async fn gallery(
 }
 
 #[get("/slideshow")]
-pub async fn slideshow(data: web::Data<AssetInfo>) -> actix_web::Result<impl Responder> {
+pub async fn slideshow(data: web::Data<MediaInfo>) -> actix_web::Result<impl Responder> {
     let random_images = data.get_random_images();
 
     Ok(web::Json(random_images))

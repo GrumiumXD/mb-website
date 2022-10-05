@@ -13,8 +13,8 @@ struct AlbumConfig {
 }
 
 #[derive(Deserialize)]
-struct AssetConfig {
-    asset_path: String,
+struct MediaConfig {
+    media_path: String,
     slideshow_count: usize,
     albums: Vec<AlbumConfig>,
 }
@@ -25,15 +25,15 @@ pub struct Album {
     images: Vec<PathBuf>,
 }
 
-pub struct AssetInfo {
-    asset_path: String,
+pub struct MediaInfo {
+    media_path: String,
     slideshow_count: usize,
     albums: Vec<Album>,
     random_images: Vec<(usize, PathBuf)>,
 }
 
-impl AssetInfo {
-    fn read_config<P>(path: P) -> io::Result<AssetConfig>
+impl MediaInfo {
+    fn read_config<P>(path: P) -> io::Result<MediaConfig>
     where
         P: AsRef<Path>,
     {
@@ -44,12 +44,12 @@ impl AssetInfo {
         buf_reader.read_to_string(&mut contents)?;
 
         // deserialize it
-        let config: AssetConfig = toml::from_str(&contents)?;
+        let config: MediaConfig = toml::from_str(&contents)?;
 
         Ok(config)
     }
 
-    pub fn new<P>(path: P) -> io::Result<AssetInfo>
+    pub fn new<P>(path: P) -> io::Result<MediaInfo>
     where
         P: AsRef<Path>,
     {
@@ -81,16 +81,16 @@ impl AssetInfo {
             });
         }
 
-        Ok(AssetInfo {
-            asset_path: config.asset_path,
+        Ok(MediaInfo {
+            media_path: config.media_path,
             slideshow_count: config.slideshow_count,
             albums,
             random_images,
         })
     }
 
-    pub fn get_asset_path(&self) -> &str {
-        &self.asset_path
+    pub fn get_media_path(&self) -> &str {
+        &self.media_path
     }
 
     pub fn get_album_list(&self) -> Vec<String> {

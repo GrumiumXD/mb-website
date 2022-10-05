@@ -1,3 +1,6 @@
+asset_path = 'assets'
+slideshow_count = 7
+
 [[albums]]
 title = "title of the first album"
 path = "path/to/the/first/album"

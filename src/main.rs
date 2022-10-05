@@ -7,9 +7,9 @@ use env_logger::Env;
 
 use argh::FromArgs;
 
-mod assets;
-use assets::AssetInfo;
+mod media;
 use log::info;
+use media::MediaInfo;
 mod handler;
 
 #[derive(FromArgs, Debug)]
@@ -23,9 +23,9 @@ struct Options {
     #[argh(option, short = 'p', default = "8080")]
     port: u16,
 
-    /// path to the assets config file
-    #[argh(option, short = 'a', default = "String::from(\"assets.toml\")")]
-    assets: String,
+    /// path to the media config file
+    #[argh(option, short = 'm', default = "String::from(\"media.toml\")")]
+    media: String,
 }
 
 #[actix_web::main]
@@ -38,12 +38,12 @@ async fn main() -> std::io::Result<()> {
     index_path.push(&options.frontend);
     index_path.push("index.html");
 
-    let mut asset_config_path: PathBuf = PathBuf::new();
-    asset_config_path.push(&options.assets);
+    let mut media_config_path: PathBuf = PathBuf::new();
+    media_config_path.push(&options.media);
 
-    let asset_info = AssetInfo::new(asset_config_path).unwrap();
+    let media_info = MediaInfo::new(media_config_path).unwrap();
     info!("Asset config loaded");
-    let app_data = web::Data::new(asset_info);
+    let app_data = web::Data::new(media_info);
 
     info!("Running server on port {}", options.port);
 
@@ -52,7 +52,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(app_data.clone())
             .wrap(Logger::default())
             .service(web::scope("/api").configure(handler::handler_config))
-            .service(Files::new("/assets", app_data.get_asset_path()))
+            .service(Files::new("/media", app_data.get_media_path()))
             .service(
                 spa()
                     .index_file(format!("{}", index_path.display()))
