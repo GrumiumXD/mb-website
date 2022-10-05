@@ -60,18 +60,24 @@ impl MediaInfo {
         let mut random_images = Vec::<_>::new();
 
         for (index, al) in config.albums.iter().enumerate() {
-            let directory = read_dir(&al.path)?;
+            // concatenate the media directory with the album directory
+            let album_path = PathBuf::from_iter([&config.media_path, &al.path].iter());
+            let directory = read_dir(&album_path)?;
 
             let images = directory
                 .map(|fi| -> io::Result<PathBuf> {
                     let fi = fi?;
 
+                    // strip the media directory from the path
+                    let image_path = fi.path();
+                    let stripped_path = image_path.strip_prefix(&config.media_path).unwrap();
+
                     // check for file names starting with "_" for the random images
                     if fi.file_name().to_str().unwrap_or_default().starts_with('_') {
-                        random_images.push((index, fi.path()));
+                        random_images.push((index, PathBuf::from(stripped_path)));
                     }
 
-                    Ok(fi.path())
+                    Ok(PathBuf::from(stripped_path))
                 })
                 .collect::<Result<Vec<_>, _>>()?;
 

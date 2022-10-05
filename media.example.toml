@@ -1,4 +1,4 @@
-asset_path = 'assets'
+media_path = 'media'
 slideshow_count = 7
 
 [[albums]]
