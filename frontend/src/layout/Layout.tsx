@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
+import Div100vh from 'react-div-100vh';
+
 import styled from 'styled-components';
 
 import { TabletThreshold, Tablet, Mobile } from './responsive';
@@ -14,17 +16,16 @@ import { Suspense } from 'react';
 
 const Grid = styled.div`
   display: grid;
-  min-height: 100vh;
+  height: 100%;
   gap: var(--spacing-m);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
   grid-template-areas:
-    'header'
-    'main'
-    'footer'
-    'menu';
+    'header header header'
+    '. main .'
+    'footer footer footer';
 
   @media (min-width: ${TabletThreshold}px) {
-    grid-template-columns: auto 1fr;
     grid-template-areas:
       'menu header .'
       'menu main .'
@@ -37,6 +38,8 @@ const Main = styled.main`
   width: 100%;
   max-width: 1000px;
   justify-self: center;
+  overflow: hidden;
+  height: 100%;
 `;
 
 type Props = {
@@ -45,22 +48,24 @@ type Props = {
 
 const Layout = (props: Props) => {
   return (
-    <Grid>
-      <Header />
-      <Main>
-        <Suspense fallback={<LoaderMedium />}>
-          {props?.error && <ErrorPage />}
-          {!props?.error && <Outlet />}
-        </Suspense>
-      </Main>
-      <Footer />
-      <Tablet>
-        <Menu />
-      </Tablet>
-      <Mobile>
-        <DialogMenu />
-      </Mobile>
-    </Grid>
+    <Div100vh>
+      <Grid>
+        <Header />
+        <Main>
+          <Suspense fallback={<LoaderMedium />}>
+            {props?.error && <ErrorPage />}
+            {!props?.error && <Outlet />}
+          </Suspense>
+        </Main>
+        <Footer />
+        <Tablet>
+          <Menu />
+        </Tablet>
+        <Mobile>
+          <DialogMenu />
+        </Mobile>
+      </Grid>
+    </Div100vh>
   );
 };
 

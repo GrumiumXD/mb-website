@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: block;
+  overflow: auto;
+  height: 100%;
   background-color: var(--main-color-trans);
   padding-block: var(--spacing-xs);
   padding-inline: var(--spacing-l);
-  margin: var(--spacing-s);
+  margin: 0;
   border-radius: 0.5em;
   box-shadow: var(--box-shadow-m);
 `;

@@ -13,7 +13,6 @@ const BaseButtonStyle = css`
   cursor: pointer;
   box-shadow: var(--box-shadow-l);
   outline: none;
-  white-space: nowrap;
 
   background-color: #ffc560;
   color: black;

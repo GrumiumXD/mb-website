@@ -27,7 +27,7 @@ const LogoBox = styled.div`
     #ffb128 95%,
     #7c4a17 100%
   );
-  height: max(5em, min(12vw, 8em));
+  height: max(3.6em, min(12vw, 8em));
   display: grid;
   place-content: center;
   place-items: center;
@@ -38,7 +38,7 @@ const LogoBox = styled.div`
   width: 100%;
 
   @media (min-width: ${TabletThreshold}px) {
-    margin-inline: max(2.5em, min(6vw, 4em));
+    margin-inline: max(1.8em, min(6vw, 4em));
     padding-inline: 0;
     width: auto;
 
@@ -49,7 +49,7 @@ const LogoBox = styled.div`
       position: absolute;
       top: 0;
       bottom: 0;
-      width: max(5em, min(12vw, 8em));
+      width: max(3.6em, min(12vw, 8em));
       background: radial-gradient(
         closest-side,
         #ffffff 0%,
@@ -61,10 +61,10 @@ const LogoBox = styled.div`
     }
 
     &::before {
-      left: calc(-1 * max(2.5em, min(6vw, 4em)));
+      left: calc(-1 * max(1.8em, min(6vw, 4em)));
     }
     &::after {
-      right: calc(-1 * max(2.5em, min(6vw, 4em)));
+      right: calc(-1 * max(1.8em, min(6vw, 4em)));
     }
   }
 `;
@@ -73,7 +73,7 @@ const Logo = styled.h1`
   font-family: 'Ballantines Bold';
   font-weight: normal;
   color: #d0011b;
-  font-size: max(5em, min(12vw, 8em));
+  font-size: max(3.6em, min(12vw, 8em));
   line-height: 0.75em;
   padding-bottom: 0.2em;
   padding-left: 0.1em;

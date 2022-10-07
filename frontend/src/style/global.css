@@ -1,5 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-image: url('./noten.png');
+  overflow: hidden;
 }
 
 :root {

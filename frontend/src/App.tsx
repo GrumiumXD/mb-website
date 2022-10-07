@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import About from './pages/about/About';
 
-import Galerie from './pages/Galerie';
+import GalleryList from './pages/gallery/GalleryList';
 import Layout from './layout/Layout';
+import Gallery from './pages/gallery/Gallery';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,16 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: '/images',
-        element: <Galerie />,
+        path: '/gallery',
+        element: <GalleryList />,
+        loader: async () => fetch(`/api/gallery`),
+        children: [
+          {
+            path: ':index',
+            element: <Gallery />,
+            loader: async ({ params }) => fetch(`/api/gallery/${params.index}`),
+          },
+        ],
       },
     ],
   },

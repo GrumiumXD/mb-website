@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import StyledNavLink from './StyledNavLink';
+import StyledNavLink from '../../components/StyledNavLink';
 import { Tablet } from '../responsive';
 
 import banner from './banner.png';
@@ -37,14 +37,24 @@ const Menu = (props: Props) => {
   return (
     <StyledNav>
       <MenuHeader>{t('heading')}</MenuHeader>
-      <StyledNavLink to={'/'} end>
+      <StyledNavLink menu to={'/'} end>
         {t('about')}
       </StyledNavLink>
-      <StyledNavLink to={'images'}>{t('images')}</StyledNavLink>
-      <StyledNavLink to={'songs'}>{t('songs')}</StyledNavLink>
-      <StyledNavLink to={'interested'}>{t('interested')}</StyledNavLink>
-      <StyledNavLink to={'press'}>{t('press')}</StyledNavLink>
-      <StyledNavLink to={'contact'}>{t('contact')}</StyledNavLink>
+      <StyledNavLink menu to={'gallery'} ex>
+        {t('gallery')}
+      </StyledNavLink>
+      <StyledNavLink menu to={'songs'}>
+        {t('songs')}
+      </StyledNavLink>
+      <StyledNavLink menu to={'interested'}>
+        {t('interested')}
+      </StyledNavLink>
+      <StyledNavLink menu to={'press'}>
+        {t('press')}
+      </StyledNavLink>
+      <StyledNavLink menu to={'contact'}>
+        {t('contact')}
+      </StyledNavLink>
       <Tablet>
         <Banner src={banner} alt="banner" />
       </Tablet>

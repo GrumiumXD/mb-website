@@ -11,7 +11,7 @@ const Grid = styled.div`
 
 const BandImage = styled.img`
   justify-self: center;
-  width: min(720px, max(60%, 320px));
+  width: max(280px, min(60%, 720px));
   box-shadow: var(--box-shadow-m);
 `;
 

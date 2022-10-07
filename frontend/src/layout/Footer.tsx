@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
+  display: block;
   grid-area: footer;
   text-align: center;
   color: white;
