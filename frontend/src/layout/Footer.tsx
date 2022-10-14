@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
+  font-family: 'Roboto';
   display: block;
-  grid-area: footer;
+  margin: auto var(--spacing-xxs) var(--spacing-xxs) var(--spacing-xxs);
   text-align: center;
-  color: white;
-  border: solid white;
+  color: black;
+  border: solid black;
   border-width: 1px 0 0 0;
-  padding-top: var(--spacing-xxs);
 `;
 
 type Props = {};

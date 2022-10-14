@@ -10,7 +10,6 @@ import ErrorPage from '../pages/ErrorPage';
 import Header from './Header';
 import Menu from './menu/Menu';
 import DialogMenu from './menu/DialogMenu';
-import Footer from './Footer';
 import { LoaderMedium } from '../components/Loader';
 import { Suspense } from 'react';
 
@@ -18,18 +17,18 @@ const Grid = styled.div`
   display: grid;
   height: 100%;
   gap: var(--spacing-m);
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     'header header header'
     '. main .'
-    'footer footer footer';
+    '. . .';
 
   @media (min-width: ${TabletThreshold}px) {
     grid-template-areas:
       'menu header .'
       'menu main .'
-      'menu footer .';
+      'menu . .';
   }
 `;
 
@@ -57,7 +56,7 @@ const Layout = (props: Props) => {
             {!props?.error && <Outlet />}
           </Suspense>
         </Main>
-        <Footer />
+        {/* <Footer /> */}
         <Tablet>
           <Menu />
         </Tablet>

@@ -23,6 +23,7 @@ const MainGrid = styled.div`
     'selection';
 
   @media (min-width: ${TabletThreshold}px) {
+    grid-template-rows: auto;
     grid-template-columns: 15em 1fr;
     grid-template-areas: 'selection gallery';
   }

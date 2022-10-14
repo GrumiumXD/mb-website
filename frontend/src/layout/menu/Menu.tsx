@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import StyledNavLink from '../../components/StyledNavLink';
+import Footer from '../Footer';
 import { Tablet } from '../responsive';
 
 import banner from './banner.png';
@@ -109,7 +110,7 @@ const Menu = (props: Props) => {
       <StyledNavLink menu to={'interested'}>
         {t('interested')}
       </StyledNavLink>
-      <StyledNavLink men to={'press'}>
+      <StyledNavLink menu to={'press'}>
         {t('press')}
       </StyledNavLink>
       <StyledNavLink menu to={'contact'}>
@@ -118,6 +119,7 @@ const Menu = (props: Props) => {
       <Tablet>
         <Banner src={banner} alt="banner" />
       </Tablet>
+      <Footer />
     </StyledNav>
   );
 };

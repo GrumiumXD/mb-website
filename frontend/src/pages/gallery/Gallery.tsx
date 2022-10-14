@@ -1,11 +1,7 @@
 import { useLoaderData } from 'react-router';
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { SGallery } from '../../schemas';
-import { Heading, Container } from '../../components/Parts';
-import StyledNavLink from '../../components/StyledNavLink';
-import { TabletThreshold } from '../../layout/responsive';
 
 const ImageGrid = styled.div`
   display: grid;
