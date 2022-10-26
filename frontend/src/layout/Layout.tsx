@@ -12,13 +12,14 @@ import Menu from './menu/Menu';
 import DialogMenu from './menu/DialogMenu';
 import { LoaderMedium } from '../components/Loader';
 import { Suspense } from 'react';
+import SlideShow from './SlideShow';
 
 const Grid = styled.div`
   display: grid;
   height: 100%;
   gap: var(--spacing-m);
   grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(100px, 1fr) auto;
   grid-template-areas:
     'header header header'
     '. main .'
@@ -27,6 +28,7 @@ const Grid = styled.div`
   @media (min-width: ${TabletThreshold}px) {
     grid-template-areas:
       'menu header .'
+      'menu slideshow .'
       'menu main .'
       'menu . .';
   }
@@ -50,6 +52,9 @@ const Layout = (props: Props) => {
     <Div100vh>
       <Grid>
         <Header />
+        <Tablet>
+          <SlideShow />
+        </Tablet>
         <Main>
           <Suspense fallback={<LoaderMedium />}>
             {props?.error && <ErrorPage />}

@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import { DesktopSThreshold, DesktopMThreshold } from '../../layout/responsive';
 
-import { SGallery } from '../../schemas';
+import { Gallery as GallerySchema } from '../../api/schemas';
 
 type GProps = {
   columns: number;
@@ -56,7 +56,7 @@ type Props = {};
 
 const Gallery = (props: Props) => {
   const data = useLoaderData();
-  const imageLinks = SGallery.parse(data);
+  const imageLinks = GallerySchema.parse(data);
 
   const isSmall = useMediaQuery({ maxWidth: DesktopSThreshold - 1 });
   const isMedium = useMediaQuery({ maxWidth: DesktopMThreshold - 1 });
@@ -64,7 +64,7 @@ const Gallery = (props: Props) => {
   const columnCount = getColumnCount(isSmall, isMedium, imageLinks.length);
 
   const images = imageLinks.map((i, index) => (
-    <Image key={index} src={`/media/${i}`} />
+    <Image key={index} src={`/media/${i}`} loading="lazy" />
   ));
 
   return <ImageGrid columns={columnCount}>{images}</ImageGrid>;

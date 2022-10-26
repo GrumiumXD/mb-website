@@ -3,7 +3,7 @@ import { Outlet, useLoaderData, useLocation, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { SGalleryList } from '../../schemas';
+import { GalleryList as GalleryListSchema } from '../../api/schemas';
 import { Heading, Container } from '../../components/Parts';
 import StyledNavLink from '../../components/StyledNavLink';
 import { TabletThreshold } from '../../layout/responsive';
@@ -79,7 +79,7 @@ const GalleryList = (props: Props) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const data = useLoaderData();
-  const galleries = SGalleryList.parse(data);
+  const galleries = GalleryListSchema.parse(data);
   const { t } = useTranslation('gallery');
   const ref = useRef<HTMLDivElement>(null);
 
