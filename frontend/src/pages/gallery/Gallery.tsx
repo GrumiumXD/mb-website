@@ -1,20 +1,56 @@
 import { useLoaderData } from 'react-router';
 import styled from 'styled-components';
 
+import { useMediaQuery } from 'react-responsive';
+
+import { DesktopSThreshold, DesktopMThreshold } from '../../layout/responsive';
+
 import { SGallery } from '../../schemas';
 
-const ImageGrid = styled.div`
-  display: grid;
-  gap: var(--spacing-m);
-  /* overflow: auto;
-  height: 100%; */
+type GProps = {
+  columns: number;
+};
+
+const ImageGrid = styled.div<GProps>`
+  display: block;
+  column-count: ${(props) => props.columns};
+  column-gap: var(--spacing-xs);
+  line-height: 0;
+
+  & > * {
+    margin-top: var(--spacing-xs);
+  }
 `;
 
 const Image = styled.img`
-  max-width: 100%;
+  width: 100%;
+  height: auto;
   border-radius: 0.5em;
   box-shadow: var(--box-shadow-l);
 `;
+
+const getColumnCount = (small: boolean, medium: boolean, c: number): number => {
+  if (small) {
+    return 1;
+  }
+
+  if (medium) {
+    if (c > 3) {
+      return 2;
+    }
+    return 1;
+  }
+
+  if (c > 5) {
+    return 3;
+  }
+
+  if (c > 3) {
+    return 2;
+  }
+
+  return 1;
+};
 
 type Props = {};
 
@@ -22,11 +58,16 @@ const Gallery = (props: Props) => {
   const data = useLoaderData();
   const imageLinks = SGallery.parse(data);
 
+  const isSmall = useMediaQuery({ maxWidth: DesktopSThreshold - 1 });
+  const isMedium = useMediaQuery({ maxWidth: DesktopMThreshold - 1 });
+
+  const columnCount = getColumnCount(isSmall, isMedium, imageLinks.length);
+
   const images = imageLinks.map((i, index) => (
-    <Image src={`/media/${i}`} key={index} />
+    <Image key={index} src={`/media/${i}`} />
   ));
 
-  return <ImageGrid>{images}</ImageGrid>;
+  return <ImageGrid columns={columnCount}>{images}</ImageGrid>;
 };
 
 export default Gallery;

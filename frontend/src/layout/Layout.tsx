@@ -35,7 +35,7 @@ const Grid = styled.div`
 const Main = styled.main`
   grid-area: main;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   justify-self: center;
   overflow: hidden;
   height: 100%;
