@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 import Carousel, { Alignment } from 'nuka-carousel';
 
@@ -9,23 +10,16 @@ import { LoaderMedium } from '../components/Loader';
 const SlideShowContainer = styled.div`
   grid-area: slideshow;
   display: block;
-  /* display: flex; */
-  /* align-items: center; */
   justify-self: center;
-  /* width: 300px; */
   max-width: 1000px;
-  /* display: flex;
-  max-height: 30px;
-
-  & > img {
-    width: 100%;
-  } */
 `;
 
 const Image = styled.img`
   max-height: 120px;
   display: block;
   margin-inline: auto;
+  border-radius: 0.5em;
+  box-shadow: var(--box-shadow-l);
 `;
 
 type Props = {};
@@ -46,7 +40,11 @@ const SlideShow = (props: Props) => {
   }
 
   const images = data.map((d, index) => {
-    return <Image key={index} src={`/media/${d[1]}`} />;
+    return (
+      <Link to={`/gallery/${d[0]}`}>
+        <Image key={index} src={`/media/${d[1]}`} />
+      </Link>
+    );
   });
 
   return (
@@ -55,7 +53,8 @@ const SlideShow = (props: Props) => {
         wrapAround={true}
         slidesToShow={5}
         autoplay={true}
-        autoplayInterval={5000}
+        autoplayInterval={6000}
+        speed={1000}
         cellAlign={Alignment.Center}
         withoutControls={true}
         animation="zoom"
